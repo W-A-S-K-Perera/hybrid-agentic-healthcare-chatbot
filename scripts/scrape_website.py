@@ -125,7 +125,7 @@ def chunk_and_store(pages: list[dict]):
 
 
 if __name__ == "__main__":
-    print(f"🕷️  Crawling {BASE_URL} (max {MAX_PAGES} pages)...")
+    print(f" Crawling {BASE_URL} (max {MAX_PAGES} pages)...")
     scraped_pages = crawl(BASE_URL)
     print(f"\n🧹 Scraped {len(scraped_pages)} pages. Chunking + embedding...")
     chunk_and_store(scraped_pages)
