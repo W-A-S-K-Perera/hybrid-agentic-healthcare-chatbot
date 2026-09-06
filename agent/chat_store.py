@@ -1,23 +1,7 @@
 """
 chat_store.py
 -------------
-Persistent, multi-thread chat storage (SQLite) -- powers a ChatGPT/
-Claude-style sidebar: a "New chat" button plus a list of past chats
-the user can click back into, each remembered across app restarts.
-
-Each row in `chat_threads` is one full conversation: its display
-title, its rendered message history (for the UI), and the agent's
-ConversationMemory state (summary + buffer, for context continuity).
-
-This also satisfies the "persistent memory across multi-turn
-conversations" bonus criterion -- memory here survives a full app
-restart, not just page reloads within a session.
-
-Note on scope: there's no user/login system in this assignment, so all
-chat threads are stored in one shared local SQLite file and are visible
-to whoever opens the app. That's fine for a local demo/single evaluator
-use case. If you add authentication later, add a `user_id` column and
-filter every query below by it.
+Stores chat history and conversation memory in SQLite for persistence across app restarts.
 """
 
 import json
