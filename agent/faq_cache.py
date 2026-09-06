@@ -1,25 +1,6 @@
 """
 faq_cache.py
-------------
-A lightweight FAQ fast-path.
-
-Why: A large share of real patient traffic is the same handful of
-questions ("what are your visiting hours", "how do I book a doctor",
-"do you accept insurance"). Routing every single one of these through
-an LLM call + tool call round-trip is slower and costlier than it needs
-to be. This module:
-
-1. Ships a small curated FAQ list with canonical answers (fast, free,
-   100% accurate for those exact intents).
-2. Uses simple embedding similarity to match a user's question to a
-   known FAQ even if it's phrased differently ("when can I visit
-   patients?" -> matches "visiting hours" FAQ).
-3. Falls back to `None` (meaning: let the full agent handle it) when
-   nothing matches confidently.
-
-This is intentionally simple (no external cache server) so it's easy
-to demo, but the interface is small enough to swap for a Redis/vector
-based semantic cache later without touching the router.
+Provides fast FAQ matching using embeddings, with unmatched questions handled by the main agent.
 """
 
 from pathlib import Path

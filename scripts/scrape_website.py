@@ -1,40 +1,4 @@
-"""
-scrape_website.py
-------------------
-Crawls www.nawaloka.com (a shallow, same-domain crawl), extracts the
-readable text from each page, chunks it, embeds it, and persists it into
-a local Chroma vector store.
-
-Run this ONCE (or whenever you want to refresh the knowledge base):
-
-    python scripts/scrape_website.py
-
-One-time setup for the headless browser (see below for why we need one):
-
-    playwright install chromium
-
-Why Playwright instead of plain `requests`?
---------------------------------------------
-nawaloka.com is a client-side-rendered React app: the server sends a
-near-empty HTML shell, and the real content (and all navigation links)
-are injected by JavaScript after the page loads in a browser.
-`requests` + BeautifulSoup never runs that JavaScript, so it only ever
-sees the empty shell (confirmed while debugging: raw HTML was ~860
-characters with no real text). Playwright launches a real headless
-Chromium browser, waits for the page to render, and then we read the
-fully-rendered DOM -- exactly what a human visitor would see.
-
-Notes on design choices (worth mentioning in your README/demo):
-- We do a breadth-first crawl limited to the same domain and a max
-  page count / depth, to avoid scraping the entire internet by accident.
-- We strip nav/footer/script/style tags before extracting text so the
-  vector DB isn't polluted with menu boilerplate.
-- Chunking uses a recursive character splitter with overlap, which is
-  the standard, dependable baseline for RAG chunking.
-- Each chunk stores metadata (source URL, page title) so the chatbot
-  can cite where information came from -- good for trust and for the
-  "improved retrieval quality" bonus marks (metadata filtering/rerank).
-"""
+#import libraries
 
 import time
 from collections import deque

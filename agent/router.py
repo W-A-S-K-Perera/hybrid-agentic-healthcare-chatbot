@@ -1,36 +1,6 @@
 """
 router.py
----------
-The agent's brain: given a user message (+ conversation memory), decide
-whether to answer directly, query the SQL database, search the vector
-store, or do both -- then synthesize a final natural-language answer.
-
-Architecture
-------------
-We use native LLM function/tool calling (Gemini's `google-generativeai`
-SDK here) rather than a hand-rolled keyword classifier. This is more
-robust: the LLM reads the actual user intent and can chain multiple
-tool calls (e.g. "compare Dr. X's fee with the cost of an ECG" needs
-two SQL calls; "is the cardiology dept mentioned on the website AND
-what's Dr. Perera's fee" needs one of each).
-
-Flow per user message:
-    1. FAQ fast-path check (agent/faq_cache.py) -- instant answer for
-       common questions, skips the LLM entirely.
-    2. Otherwise, call the LLM with both tools registered and let it
-       decide (system prompt instructs it on when to use which tool,
-       and to combine both when the question spans both worlds).
-    3. Execute any requested tool call(s), feed results back to the
-       LLM, and let it produce the final answer. Looped up to
-       MAX_TOOL_ROUNDS times to allow multi-step tool chains.
-    4. Update conversation memory; compact if needed.
-
-Swapping LLM providers
------------------------
-Only `_call_llm` and `_call_llm_with_tools` touch the Gemini SDK
-directly. To use OpenAI, Groq, or another provider instead, reimplement
-those two functions with the same signatures -- nothing else in this
-file (or app.py) needs to change.
+Routes user questions to the FAQ, SQL database, vector store, or a combination of tools, then generates the final response.
 """
 
 import json

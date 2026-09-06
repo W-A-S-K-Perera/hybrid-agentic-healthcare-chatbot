@@ -1,21 +1,7 @@
 """
 app.py
-------
-Streamlit chat UI for the Hybrid Agentic Healthcare Chatbot.
-
-Run with:
-    streamlit run app.py
-
-Features:
-- Sidebar chat history: "New chat" button + a list of past conversations
-  you can click back into (like ChatGPT/Claude), backed by SQLite so it
-  survives an app restart (agent/chat_store.py).
-- Source citations: when the vector tool is used, the pages it pulled
-  from are shown under the answer.
-- Live metrics panel: aggregate routing/latency/success stats pulled
-  from agent/telemetry.py's interaction log.
 """
-
+#import libraries
 import streamlit as st
 from pathlib import Path
 

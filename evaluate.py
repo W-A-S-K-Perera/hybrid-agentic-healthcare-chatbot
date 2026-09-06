@@ -1,26 +1,6 @@
 """
 evaluate.py
------------
-Quantitative evaluation harness for the agent's query-routing accuracy.
 
-The assignment is explicitly graded on "query routing accuracy" -- this
-script turns that from a vague claim ("it routes correctly, trust me")
-into a measured number you can put in your README/demo: e.g.
-"18/20 test questions routed correctly (90%)".
-
-It runs a labeled test set of questions through the real agent
-(agent/router.py) and checks whether the SET of tools it called
-matches the expected set for that question category:
-    - "sql"        -> only query_hospital_database should be called
-    - "vector"     -> only search_hospital_website should be called
-    - "both"       -> both tools should be called
-    - "faq"        -> should be answered by the FAQ cache (no LLM tool call)
-    - "none"       -> off-topic; no tool should be called
-
-Usage:
-    python evaluate.py                 # run full suite, print report
-    python evaluate.py --verbose       # also print each question's trace
-    python evaluate.py --save results.json   # persist raw results
 """
 
 import argparse

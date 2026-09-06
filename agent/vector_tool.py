@@ -1,23 +1,6 @@
 """
 vector_tool.py
---------------
-Wraps the Chroma vector store built by scripts/scrape_website.py and
-exposes a single retrieval function the agent can call for
-unstructured, informational questions (hospital services, clinical
-centers, general policies, "about us" content, visiting hours, etc.)
-
-Retrieval-quality improvements (bonus criterion) implemented here:
-1. MMR (Maximal Marginal Relevance) search for the initial candidate
-   pool -- reduces near-duplicate chunks in the context window.
-2. Cross-encoder reranking: a dedicated `sentence-transformers`
-   cross-encoder (`ms-marco-MiniLM-L-6-v2`) scores each (query, chunk)
-   pair jointly, which is substantially more accurate than pure
-   embedding cosine-similarity for ranking -- this is the standard
-   "retrieve-then-rerank" pattern used in production RAG systems.
-   Falls back to a cheap keyword-overlap score if the cross-encoder
-   model can't be loaded (e.g. no internet), so the tool never hard-fails.
-3. Source metadata is always returned, so the chatbot can cite the
-   page it pulled information from.
+Retrieves relevant information from the Chroma vector store using MMR and reranking, with source metadata for citations.
 """
 
 from pathlib import Path

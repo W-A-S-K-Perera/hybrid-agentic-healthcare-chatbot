@@ -1,20 +1,6 @@
 """
 telemetry.py
-------------
-Structured logging of every agent interaction, so "agent performance"
-isn't just a claim -- you have a log file (and a couple of derived
-stats) to show evaluators. Each turn appends one JSON line to
-logs/interactions.jsonl with:
-
-    timestamp, question, route (faq/sql/vector/both/none),
-    tool_calls (names + args), latency_sec, success, error (if any)
-
-This is intentionally file-based JSONL (not a DB) so it's trivial to
-`tail -f` during a live demo, or load into pandas for a quick chart.
-
-Usage: call `log_interaction(...)` from agent/router.py after each turn.
-Call `summary_stats()` any time (e.g. from a small "Metrics" tab in the
-UI) to get aggregate numbers.
+Logs agent interactions in JSONL format and provides simple performance statistics.
 """
 
 import json

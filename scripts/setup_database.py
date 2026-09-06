@@ -1,20 +1,4 @@
-"""
-setup_database.py
-------------------
-Converts the provided MySQL-flavoured `data.sql` into a local SQLite
-database (`hospital.db`) that the agent's SQL tool can query directly.
-
-Why SQLite? It needs zero server setup, ships with Python, and is more
-than enough for this assignment. If you'd rather point this at real
-MySQL/Postgres, swap the `sqlite3.connect(...)` call for your driver of
-choice (e.g. `mysql.connector` or `psycopg2`) -- the rest of the agent
-code talks to the DB only through `agent/sql_tool.py`, so nothing else
-needs to change.
-
-Usage:
-    python scripts/setup_database.py
-"""
-
+#import libaries 
 import re
 import sqlite3
 from pathlib import Path

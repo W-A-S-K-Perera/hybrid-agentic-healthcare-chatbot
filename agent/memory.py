@@ -1,26 +1,6 @@
 """
 memory.py
----------
-Simple agentic memory for multi-turn context.
-
-Two layers, kept intentionally simple so it's easy to explain in an
-interview/demo:
-
-1. Short-term buffer: the last N raw turns are kept verbatim and sent
-   with every request, so follow-ups like "what about on Saturdays?"
-   or "how much does that cost?" resolve correctly against the prior
-   turn.
-
-2. Rolling summary: once the conversation exceeds the buffer window,
-   older turns are compressed into a running natural-language summary
-   (via an LLM call) instead of being dropped, so long conversations
-   don't lose earlier context (e.g. "earlier you said you were looking
-   for a cardiologist for your father") while keeping the prompt small.
-
-This is deliberately in-process/session-scoped (Streamlit session
-state holds the ConversationMemory instance) rather than persisted to
-disk/DB, but `to_dict`/`from_dict` are provided so it's trivial to
-persist per-user if you want true cross-session memory later.
+Manages short-term conversation history and rolling summaries to maintain context across multiple turns.
 """
 
 from dataclasses import dataclass, field

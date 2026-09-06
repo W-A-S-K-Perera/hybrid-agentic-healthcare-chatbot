@@ -1,16 +1,6 @@
 """
 sql_tool.py
------------
-A minimal, safe Text-to-SQL tool for the agent.
-
-Design choices:
-- We hand the LLM the exact CREATE TABLE schema (not a hand-written
-  description) so it always has ground truth about column names/types.
-- We only ever execute SELECT statements -- a lightweight guardrail so
-  a hallucinated/malicious query can't INSERT/UPDATE/DELETE/DROP
-  anything. This matters a lot for a "production-facing" hospital bot.
-- Results are returned as a list of dicts (JSON-friendly) with a row
-  cap, so the LLM doesn't get an enormous, cost-inflating context dump.
+Provides a safe Text-to-SQL tool that executes read-only SELECT queries and returns limited, JSON-friendly results.
 """
 
 import re
