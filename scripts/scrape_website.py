@@ -64,16 +64,16 @@ def crawl(base_url: str, max_pages: int = MAX_PAGES) -> list[dict]:
             try:
                 page.goto(url, timeout=PAGE_LOAD_TIMEOUT_MS, wait_until="networkidle")
             except Exception as exc:  # noqa: BLE001 - keep crawling past a single bad page
-                print(f"⚠️  Skipping {url}: {exc}")
+                print(f"  Skipping {url}: {exc}")
                 continue
 
             html = page.content()
             title, text = clean_page_text(html)
             if len(text) > 200:  # skip near-empty pages
                 pages.append({"url": url, "title": title, "text": text})
-                print(f"✅ Scraped ({len(visited)}/{max_pages}): {url}  [{len(text)} chars]")
+                print(f"Scraped ({len(visited)}/{max_pages}): {url}  [{len(text)} chars]")
             else:
-                print(f"⚠️  Skipping {url}: page rendered but had almost no text ({len(text)} chars)")
+                print(f"Skipping {url}: page rendered but had almost no text ({len(text)} chars)")
 
             soup = BeautifulSoup(html, "html.parser")
             for link in soup.find_all("a", href=True):
@@ -121,7 +121,7 @@ def chunk_and_store(pages: list[dict]):
         persist_directory=PERSIST_DIR,
     )
     vectordb.persist()
-    print(f"✅ Vector DB persisted at: {PERSIST_DIR}")
+    print(f" Vector DB persisted at: {PERSIST_DIR}")
 
 
 if __name__ == "__main__":

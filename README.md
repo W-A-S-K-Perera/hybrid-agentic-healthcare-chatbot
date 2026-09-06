@@ -248,8 +248,8 @@ Follow the steps below to run the project locally.
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd nawaloka-hybrid-agentic-healthcare-chatbot
+git clone https://github.com/W-A-S-K-Perera/hybrid-agentic-healthcare-chatbot.git
+cd hybrid-agentic-healthcare-chatbot
 ```
 
 ### 2. Create a virtual environment
