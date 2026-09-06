@@ -1,0 +1,11 @@
+streamlit==1.38.0
+google-generativeai==0.8.3
+langchain==0.3.7
+langchain-community==0.3.5
+chromadb==0.5.20
+sentence-transformers==3.2.1
+beautifulsoup4==4.12.3
+requests==2.32.3
+python-dotenv==1.0.1
+numpy==1.26.4
+playwright==1.47.0
