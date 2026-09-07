@@ -20,7 +20,7 @@ from agent.telemetry import log_interaction
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+GEMINI_MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 MAX_TOOL_ROUNDS = 4
 MAX_RETRIES = 3
 BASE_BACKOFF_SEC = 2
