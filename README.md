@@ -485,24 +485,6 @@ The tests cover areas such as:
 - Chat persistence
 - Chat deletion
 
-## Error and Rate Limit Handling
-
-LLM APIs can sometimes return temporary errors or rate-limit responses.
-
-The agent includes retry and backoff handling so that temporary API failures do not immediately stop the application.
-
-If a request continues to fail, the application displays an error message instead of crashing the Streamlit interface.
-
-## Security Considerations
-
-The SQL tool is designed to be read-only.
-
-Generated SQL queries are checked before execution, and destructive operations are rejected.
-
-The Gemini API key is stored in the `.env` file rather than being hard-coded in the source code.
-
-The `.env` file should never be pushed to GitHub.
-
 ## Design Decisions
 
 ### Why SQLite?
@@ -543,21 +525,8 @@ The project includes several features beyond the basic requirements:
 - Unit tests
 - Agent debugging trace
 
-## Known Limitations
 
-This project is intended as a technical assignment/demo rather than a production healthcare system.
-
-Some current limitations include:
-
-- The website crawler uses a bounded crawl rather than a production-grade crawler.
-- Website content can change, so the vector database needs to be refreshed periodically.
-- Chat history is stored locally and is not associated with individual users.
-- There is no authentication or patient account system.
-- The system depends on the availability and response quality of the selected LLM.
-- The SQL and vector databases are local to the application environment.
-- The chatbot should not be used as a replacement for professional medical advice.
-
-## Possible Future Improvements
+## Future Improvements
 
 If the project were developed further, possible improvements would include:
 
@@ -572,11 +541,6 @@ If the project were developed further, possible improvements would include:
 - Additional healthcare safety checks
 - Cloud deployment
 
-## Important Note
-
-This chatbot is developed as a technical assignment/demo application.
-
-The information provided by the chatbot should be treated as informational only. For actual medical decisions, patients should consult qualified healthcare professionals.
 
 ## Author
 
