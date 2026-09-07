@@ -5,3 +5,4 @@ __pycache__/
 data/hospital.db
 vectorstore/
 .streamlit/
+ .venv/ 
